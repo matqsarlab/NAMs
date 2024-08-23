@@ -15,7 +15,7 @@ def read_xlsx_paths(root_dir: str):
 
 def concate():
     # WCZYTAJ PLIK
-    # main_table = pd.read_excel("TEMPLATE.xlsx", sheet_name="table")
+    main_table = pd.read_excel("TEMPLATE.xlsx", sheet_name="table")
     main_table = pd.read_excel("~/Downloads/TEMPLATE.xlsx", sheet_name="table")
     paths = read_xlsx_paths("../ECHA_TEMPLATE_TASK/Output/")
     paths = [
@@ -59,6 +59,7 @@ def concate():
 
         except FileNotFoundError:
             print(f"File not found: {path}")
+    main_table.dropna(axis=1, inplace=True)
     main_table.to_excel("to_remove.xlsx")
 
 
