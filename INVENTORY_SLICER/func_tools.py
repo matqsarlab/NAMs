@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def remove_blank(df):
+def take_methods(df):
     result = []
     columns = df.columns
     for _, row in df.iterrows():
@@ -72,9 +72,14 @@ def remove_zeros(df, start=0, end=8):
 
 
 def cleaner_chain(inventory: pd.DataFrame, filename: str):
-    result_df = remove_blank(inventory)
+    result_df = take_methods(inventory)
     result_df = result_df.dropna(subset=list(result_df.columns[10:]), how="all")
     result_df = fill_missing_values(result_df)
     result_df = fill_missing_values2(result_df)
     result_df = remove_zeros(result_df)
+    return result_df.to_excel(filename, index=False)
+
+
+def pipleine2excels(inventory: pd.DataFrame, filename: str):
+    result_df = take_methods(inventory)
     return result_df.to_excel(filename, index=False)

@@ -1,5 +1,5 @@
 import pandas as pd
-from func_tools import cleaner_chain
+from func_tools import pipleine2excels
 
 df1 = pd.read_excel(
     "~/Downloads/NAMs_inventory_v20240723-A-L.xlsx",
@@ -11,3 +11,5 @@ df2 = pd.read_excel(
 )
 df2.columns = df1.columns
 inventory = pd.concat([df1, df2], ignore_index=True)
+
+pipleine2excels(inventory, "dupa.xlsx")
