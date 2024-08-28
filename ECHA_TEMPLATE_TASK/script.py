@@ -66,8 +66,6 @@ def create_xlsx_files(dir_file):
         workbook = load_workbook("ECHA_NAM_DATA_TEMPLATE.xlsx")
         # WCZYTAJ SHEET
         worksheet = workbook["SCORING"]
-        print(workbook.sheetnames)
-        input()
 
         # DODANIE LISTY DROPDOWN DO ARKUSZA PO UKRYTYM DICTIONARY
         dictionary_sheet = workbook["endpoints_dictionary"]

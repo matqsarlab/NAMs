@@ -12,3 +12,6 @@ INVENTORY_SLICER/.DS_Store
 INVENTORY_SLICER/dupa_old_new.xlsx
 INVENTORY_SLICER/~$dupa_old_new.xlsx
 *.xlsx
+
+CONCATE_EXCELS/to_remove.xlsx
+ECHA_TEMPLATE_TASK/~$ECHA_NAM_DATA_TEMPLATE.xlsx
