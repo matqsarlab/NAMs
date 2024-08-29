@@ -145,6 +145,4 @@ def pipleine2excels(inventory: pd.DataFrame, filename: str):
     result_df = fill_missing_values2(result_df)
     result_df = remove_zeros(result_df)
     result_df = result_df.dropna(subset=list(result_df.columns[0:7]), how="all")
-    # check_endpoints_col(result_df)
-    save_author_files(result_df)
-    return result_df.to_excel(filename, index=False)
+    return save_author_files(result_df)

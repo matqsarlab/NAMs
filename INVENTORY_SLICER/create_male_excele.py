@@ -11,5 +11,4 @@ df2 = pd.read_excel(
 )
 df2.columns = df1.columns
 inventory = pd.concat([df1, df2], ignore_index=True)
-
-pipleine2excels(inventory, "dupa.xlsx")
+pipleine2excels(inventory, "dupa2.xlsx")
