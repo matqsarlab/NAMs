@@ -139,7 +139,7 @@ def cleaner_chain(inventory: pd.DataFrame, filename: str):
     return result_df.to_excel(filename, index=False)
 
 
-def pipleine2excels(inventory: pd.DataFrame, filename: str):
+def pipleine2excels(inventory: pd.DataFrame):
     result_df = take_methods(inventory)
     result_df = fill_missing_values(result_df)
     result_df = fill_missing_values2(result_df)
