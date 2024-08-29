@@ -1,6 +1,7 @@
 import pandas as pd
 from openpyxl import load_workbook
 import re
+import os
 
 
 def extract_first_author(authors):
@@ -105,6 +106,14 @@ def remove_zeros(df, start=0, end=8):
 
 
 def save_author_files(df: pd.DataFrame):
+    directory = "./Output"
+    withscoring = f"{directory}/WITH_SCORING"
+    withoutscoring = f"{directory}/WITHOUT_SCORING"
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+        os.makedirs(withscoring)
+        os.makedirs(withoutscoring)
+
     unique_authors = df["Authors"].unique()
     for author in unique_authors:
         df_author = df[df["Authors"] == author]
@@ -112,7 +121,7 @@ def save_author_files(df: pd.DataFrame):
         title = df_author["Title"].iloc[0]
         filename = f"{first_author}_" + make_title(title) + ".xlsx"
         if df_author.iloc[:, 10:].notna().any().any():
-            path2save = f"./TO_REMOVE/WITH_SCORING/{filename}"
+            path2save = f"./{withscoring}/{filename}"
             df_author.to_excel(path2save, index=False, sheet_name="NAMS")
         else:
             wb = load_workbook("../ECHA_TEMPLATE_TASK/ECHA_NAM_DATA_TEMPLATE.xlsx")
@@ -122,7 +131,7 @@ def save_author_files(df: pd.DataFrame):
                 if s == "NAMs":
                     sheet_name = wb[s]
                     wb.remove(sheet_name)
-            path2save = f"./TO_REMOVE/WITHOUT_SCORING/{filename}"
+            path2save = f"./{withoutscoring}/{filename}"
             wb.save(path2save)
             df_author.iloc[:, 8] = "='S&K'!F4"
             df_author.iloc[:, 9] = "='S&K'!F8"
