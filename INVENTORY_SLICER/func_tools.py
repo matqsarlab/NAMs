@@ -68,20 +68,16 @@ def fill_missing_values(df):
 
 def fill_missing_values2(df):
     last_values = {}
-
     for index, row in df.iterrows():
         author = row["Authors"]
-
         if author not in last_values:
             last_values[author] = {}
-
         for col in df.columns:
             if col != "Authors" and pd.isna(row[col]):
                 if col in last_values[author]:
                     df.at[index, col] = last_values[author][col]
             else:
                 last_values[author][col] = row[col]
-
     return df
 
 
@@ -96,6 +92,9 @@ def remove_zeros(df, start=0, end=8):
 
         for col in df.columns[start:end]:
             if col != "Authors" and row[col] == 0:
+                if col in last_values[author]:
+                    df.at[index, col] = last_values[author][col]
+            elif col != "Authors" and re.match(r"\s+", str(row[col])):
                 if col in last_values[author]:
                     df.at[index, col] = last_values[author][col]
             else:
